@@ -1,0 +1,1 @@
+EVAL "return math.sqrt(tonumber(redis.call('get', KEYS[1])))" 0 ключ значение
