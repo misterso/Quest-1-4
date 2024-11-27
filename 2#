@@ -1,7 +1,5 @@
-redis-cli HSET ratings mysql 10
-redis-cli HSET ratings postgresql 20
-redis-cli HSET ratings mongodb 30
-redis-cli HSET ratings redis 40
-redis-cli HINCRBY ratings mysql 15
-redis-cli HDEL ratings $(redis-cli HKEYS ratings | xargs -I {} redis-cli HGET ratings {} | sort -n | tail -n 1 | xargs -I {} redis-cli HKEYS ratings | grep {} )
-redis-cli HGET ratings mysql
+ZADD ratings 10 mysql 20 postgresql 30 mongodb 40 redis
+ZINCRBY ratings 15 mysql
+ZREVRANGE ratings 0 0 WITHSCORES
+ZREM ratings $(ZREVRANGE ratings 0 0 | awk '{print $1}')
+ZREVRANK ratings mysql
