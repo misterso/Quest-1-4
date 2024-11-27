@@ -1,2 +1,2 @@
-redis-cli psubscribe events.*
-redis-cli publish events101 "Hello there"
+SUBSCRIBE events*
+PUBLISH events101 "Hello there"
